@@ -17,11 +17,6 @@ namespace PopupSystem
 
         private BasePopupArgs _popupArgs;
         
-        private void Reset()
-        {
-            _hideButton ??= GameObject.Find("hide")?.GetComponent<Button>();
-        }
-        
         protected virtual void Init(BasePopupArgs args)
         {
             _popupArgs = args;
@@ -60,6 +55,11 @@ namespace PopupSystem
         protected virtual void OnDestroy()
         {
             _hideButton?.onClick.RemoveAllListeners();
+        }
+        
+        protected virtual void Reset()
+        {
+            _hideButton ??= transform.Find("hide_button")?.GetComponent<Button>();
         }
         
         protected T Args<T>() where T : BasePopupArgs

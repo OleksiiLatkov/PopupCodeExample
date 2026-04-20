@@ -30,7 +30,7 @@ namespace PopupSystem
         
         [SerializeField, Required] private Button _leftButton;
         [SerializeField, Required] private Button _rightButton;
-
+        
         protected override void OnInit()
         {
             base.OnInit();
@@ -59,6 +59,17 @@ namespace PopupSystem
             
             _leftButton.onClick.RemoveAllListeners();
             _rightButton.onClick.RemoveAllListeners();
+        }
+        
+        protected override void Reset()
+        {
+            base.Reset();
+            
+            _title ??= transform.Find("title")?.GetComponent<TextMeshProUGUI>();
+            _description ??= transform.Find("description")?.GetComponent<TextMeshProUGUI>();
+            
+            _leftButton  ??= transform.Find("leftButton")?.GetComponent<Button>();
+            _rightButton ??= transform.Find("rightButton")?.GetComponent<Button>();
         }
     }
 }
